@@ -1,6 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { JuridicPersonService } from '../../services/juridic-person.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PhysicalPersonService } from '../../services/physical-person.service';
@@ -26,7 +25,7 @@ export class PhysicalPersonComponent implements OnInit {
       name: new FormControl(this.data ? this.data.name : '', Validators.required),
       lastName: new FormControl(this.data ? this.data.lastName : '', Validators.required),
       cc: new FormControl(this.data ? this.data.cc : '', Validators.required)
-    })
+    });
   }
 
   close(): void {
