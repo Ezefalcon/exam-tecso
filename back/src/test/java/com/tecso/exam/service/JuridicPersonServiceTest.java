@@ -2,13 +2,12 @@ package com.tecso.exam.service;
 
 import com.tecso.exam.domain.JuridicPerson;
 import com.tecso.exam.repository.JuridicPersonRepository;
-import com.tecso.exam.service.exceptions.JuridicPersonAlreadyExistsException;
-import com.tecso.exam.service.exceptions.JuridicPersonNotFoundException;
+import com.tecso.exam.service.exceptions.alreadyexists.JuridicPersonAlreadyExistsException;
+import com.tecso.exam.service.exceptions.notfound.JuridicPersonNotFoundException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Spy;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Optional;
@@ -29,7 +28,7 @@ public class JuridicPersonServiceTest {
     public void save_shouldThrowAlreadyExistsException() {
         JuridicPerson juridicPerson = new JuridicPerson("123", "asd", 2021);
 
-        when(juridicPersonRepository.existsById("123")).thenReturn(true);
+        when(juridicPersonRepository.existsByRut("123")).thenReturn(true);
         when(juridicPersonService.save(juridicPerson)).thenReturn(juridicPerson);
 
         juridicPersonService.save(juridicPerson);
@@ -37,8 +36,8 @@ public class JuridicPersonServiceTest {
 
     @Test(expected = JuridicPersonNotFoundException.class)
     public void findById_shouldThrowNotFoundException() {
-        when(juridicPersonRepository.findById("123")).thenReturn(Optional.empty());
+        when(juridicPersonRepository.findById(1l)).thenReturn(Optional.empty());
 
-        juridicPersonService.findById("123");
+        juridicPersonService.findById(1l);
     }
 }

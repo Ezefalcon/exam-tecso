@@ -12,9 +12,9 @@ import java.util.List;
 @RequestMapping("/juridic-person")
 public class JuridicPersonController {
 
-    JuridicPersonService juridicPersonService;
+    private JuridicPersonService juridicPersonService;
 
-    GenericMapper<JuridicPerson, JuridicPersonDTO> mapper;
+    private GenericMapper<JuridicPerson, JuridicPersonDTO> mapper;
 
     public JuridicPersonController(JuridicPersonService juridicPersonRepository) {
         this.juridicPersonService = juridicPersonRepository;
@@ -28,7 +28,7 @@ public class JuridicPersonController {
     }
 
     @GetMapping("/{id}")
-    public JuridicPersonDTO getJuridicPersonByRut(@PathVariable String id) {
+    public JuridicPersonDTO getJuridicPersonByRut(@PathVariable Long id) {
         JuridicPerson byId = this.juridicPersonService.findById(id);
         return mapper.convertToDTO(byId);
     }
@@ -40,15 +40,15 @@ public class JuridicPersonController {
     }
 
     @PutMapping("/{id}")
-    public JuridicPersonDTO update(@RequestBody JuridicPersonDTO juridicPersonDTO, @PathVariable String id) {
+    public JuridicPersonDTO update(@RequestBody JuridicPersonDTO juridicPersonDTO, @PathVariable Long id) {
         JuridicPerson juridicPerson = mapper.convertToEntity(juridicPersonDTO);
-        juridicPerson.setRut(id);
+        juridicPerson.setId(id);
         JuridicPerson saved = juridicPersonService.update(juridicPerson);
         return mapper.convertToDTO(saved);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteById(@PathVariable String id) {
+    public void deleteById(@PathVariable Long id) {
         juridicPersonService.deleteById(id);
     }
 

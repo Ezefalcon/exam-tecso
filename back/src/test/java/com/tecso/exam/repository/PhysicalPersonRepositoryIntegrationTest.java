@@ -6,12 +6,13 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-
+@Transactional
 public class PhysicalPersonRepositoryIntegrationTest extends RepositoryConfigurationTest {
 
     @Autowired
@@ -23,10 +24,10 @@ public class PhysicalPersonRepositoryIntegrationTest extends RepositoryConfigura
     @Test
     public void onSave_shouldBeFound() {
         PhysicalPerson physicalPerson = new PhysicalPerson("123", "Juan", "T", "CC");
-        entityManager.persist(physicalPerson);
+        PhysicalPerson persist = entityManager.persist(physicalPerson);
         entityManager.flush();
 
-        Optional<PhysicalPerson> physicalPersonFound = physicalPersonRepository.findById("123");
+        Optional<PhysicalPerson> physicalPersonFound = physicalPersonRepository.findById(persist.getId());
 
         assertTrue(physicalPersonFound.isPresent());
         String name = physicalPersonFound.get().getName();

@@ -1,4 +1,4 @@
-package com.tecso.exam.service.exceptions;
+package com.tecso.exam.service.exceptions.alreadyexists;
 
 public class JuridicPersonAlreadyExistsException extends IllegalArgumentException {
     public JuridicPersonAlreadyExistsException() {

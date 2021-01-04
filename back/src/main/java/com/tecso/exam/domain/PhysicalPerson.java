@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 
 @Entity
 @NoArgsConstructor
-@Getter
+@Data
 public class PhysicalPerson extends Person {
     private String lastName;
     private String cc;

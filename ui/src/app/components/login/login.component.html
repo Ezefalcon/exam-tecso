@@ -1,0 +1,37 @@
+<div class="row background-color login-content">
+  <div class="col-12 d-flex justify-content-center align-items-center align-middle">
+    <div class="col-12 d-flex justify-content-center">
+      <mat-card>
+        <mat-card-content class="mt-3">
+          <div class="d-flex justify-content-center row mt-2">
+              <h1 class="text-center">Tecso Exam</h1>
+          </div>
+          <form [formGroup]="form" (ngSubmit)="onSubmit()" class="m-5" *ngIf="!showSingUp">
+            <mat-error *ngIf="loginInvalid">
+              The username and password were not recognised
+            </mat-error>
+            <mat-form-field class="col-12 mt-2">
+              <input matInput placeholder="Username" formControlName="username" required>
+              <mat-error>
+                Please provide a valid username
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-12 mt-2">
+              <input matInput type="password" placeholder="Password" formControlName="password" required>
+              <mat-error>
+                Please provide a valid password
+              </mat-error>
+            </mat-form-field>
+            <div class="row mt-4">
+              <a class="col-6 mt-2 sing-up" (click)="toggleSingUp()">SIGN UP</a>
+              <button class="col-6 btn btn-dark submit" type="submit" mat-raised-button color="accent" [disabled]="!form.valid">SING IN</button>
+            </div>
+          </form>
+          <app-sing-up *ngIf="showSingUp" (toggleSingUp)="toggleSingUp()"></app-sing-up>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+  </div>
+</div>
+

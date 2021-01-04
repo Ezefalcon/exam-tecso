@@ -1,0 +1,44 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="m-5">
+  <mat-error *ngIf="singUpInvalid">
+    The service is not available right now
+  </mat-error>
+  <!-- Username -->
+  <div class="d-inline-flex w-100">
+    <mat-form-field class="col-11 mt-2">
+      <input matInput placeholder="Username" formControlName="username" required>
+      <mat-error>
+        Please provide a username
+      </mat-error>
+    </mat-form-field>
+    <div class="col-1 mt-3">
+      <mat-spinner *ngIf="usernameLoader" [diameter]="20"></mat-spinner>
+      <mat-icon *ngIf="isShowTickUsername()" class="check-color">check</mat-icon>
+      <mat-icon *ngIf="isShowErrorUsername()" class="check-color">highlight_off</mat-icon>
+    </div>
+  </div>
+  <!-- Email -->
+  <mat-form-field class="col-11 mt-2">
+    <input matInput type="email" placeholder="Email" formControlName="email" required>
+    <mat-error>
+      Please provide a valid email address
+    </mat-error>
+  </mat-form-field>
+  <!-- Password -->
+  <mat-form-field class="col-11 mt-2">
+    <input matInput type="password" placeholder="Password" formControlName="password" required>
+    <mat-error>
+      Password must have more than {{USERNAME_LENGTH}} characters
+    </mat-error>
+  </mat-form-field>
+  <!-- Confirm Password -->
+  <mat-form-field class="col-11 mt-2">
+    <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword" required>
+    <mat-error>
+      Passwords does not match
+    </mat-error>
+  </mat-form-field>
+  <div class="row mt-4">
+    <a class="col-6 mt-2 sing-up" (click)="toggleSingUp.emit()">SING IN</a>
+    <button class="col-6 btn btn-dark submit" type="submit" mat-raised-button color="accent" [disabled]="!form.valid">SING UP</button>
+  </div>
+</form>

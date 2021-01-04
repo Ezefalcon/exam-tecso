@@ -1,7 +1,7 @@
 package com.tecso.exam.handler;
 
 import com.tecso.exam.domain.dto.ErrorDTO;
-import com.tecso.exam.service.exceptions.AlreadyExistsException;
+import com.tecso.exam.service.exceptions.alreadyexists.AlreadyExistsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

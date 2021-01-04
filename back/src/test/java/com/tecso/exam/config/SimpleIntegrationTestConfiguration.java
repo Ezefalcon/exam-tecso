@@ -7,7 +7,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 @PropertySource("application-test.properties")
 @ActiveProfiles("test")
-@SpringBootTest
+@SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public abstract class SimpleIntegrationTestConfiguration {
 }

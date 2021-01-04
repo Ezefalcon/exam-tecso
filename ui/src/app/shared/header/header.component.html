@@ -1,0 +1,18 @@
+<mat-toolbar role="heading">
+    <div class="col-4 ">
+      <div class="account-icon pointer">
+        <mat-icon aria-hidden="false" class="vertical-align" aria-label="Home" [inline]="true" (click)="goHome()">home</mat-icon>
+      </div>
+    </div>
+    <div class="col-4">
+      <span class="text-center d-flex justify-content-center">Tecso exam</span>
+    </div>
+    <div class="col-4 float-right d-inline-flex justify-content-end">
+      <div class="account-icon ml-3 pointer">
+        <mat-icon aria-hidden="false" class="vertical-align" aria-label="Account" [inline]="true" [matMenuTriggerFor]="menu">account_circle</mat-icon>
+      </div>
+      <mat-menu #menu="matMenu" class="margin-top-20">
+        <button mat-menu-item (click)="logout()">Logout</button>
+      </mat-menu>
+    </div>
+</mat-toolbar>

@@ -5,8 +5,8 @@ import java.util.List;
 public interface CrudService<T> {
     T save(T t);
     T update(T t);
-    T findById(String id);
+    T findById(Long id);
     List<T> findAll();
-    void deleteById(String id);
-    boolean existsById(String id);
+    void deleteById(Long id);
+    boolean existsById(Long id);
 }

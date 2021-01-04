@@ -2,8 +2,9 @@ package com.tecso.exam.service;
 
 import com.tecso.exam.domain.JuridicPerson;
 import com.tecso.exam.repository.JuridicPersonRepository;
-import com.tecso.exam.service.exceptions.JuridicPersonAlreadyExistsException;
-import com.tecso.exam.service.exceptions.JuridicPersonNotFoundException;
+import com.tecso.exam.service.exceptions.alreadyexists.JuridicPersonAlreadyExistsException;
+import com.tecso.exam.service.exceptions.alreadyexists.PersonRutAlreadyExistsException;
+import com.tecso.exam.service.exceptions.notfound.JuridicPersonNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class JuridicPersonServiceImpl implements JuridicPersonService {
 
     @Override
     public JuridicPerson save(JuridicPerson juridicPerson) {
-        if(!juridicPersonRepository.existsById(juridicPerson.getRut())) {
+        if(!juridicPersonRepository.existsByRut(juridicPerson.getRut())) {
             return juridicPersonRepository.save(juridicPerson);
         }
         throw new JuridicPersonAlreadyExistsException();
@@ -28,14 +29,19 @@ public class JuridicPersonServiceImpl implements JuridicPersonService {
 
     @Override
     public JuridicPerson update(JuridicPerson juridicPerson) {
-        if(existsById(juridicPerson.getRut())) {
+        Optional<JuridicPerson> foundOpt = juridicPersonRepository.findById(juridicPerson.getId());
+        if(foundOpt.isPresent()) {
+            JuridicPerson persistedPerson = foundOpt.get();
+            if(!persistedPerson.getRut().equals(juridicPerson.getRut()) && juridicPersonRepository.existsByRut(juridicPerson.getRut())) {
+                throw new PersonRutAlreadyExistsException();
+            }
             return juridicPersonRepository.save(juridicPerson);
         }
         throw new JuridicPersonNotFoundException();
     }
 
     @Override
-    public JuridicPerson findById(String id) {
+    public JuridicPerson findById(Long id) {
         Optional<JuridicPerson> juridicPerson = juridicPersonRepository.findById(id);
         if(juridicPerson.isPresent()) {
             return juridicPerson.get();
@@ -49,12 +55,12 @@ public class JuridicPersonServiceImpl implements JuridicPersonService {
     }
 
     @Override
-    public void deleteById(String rut) {
-        juridicPersonRepository.deleteById(rut);
+    public void deleteById(Long id) {
+        juridicPersonRepository.deleteById(id);
     }
 
     @Override
-    public boolean existsById(String id) {
+    public boolean existsById(Long id) {
         return juridicPersonRepository.existsById(id);
     }
 }

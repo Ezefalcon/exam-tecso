@@ -1,4 +1,4 @@
-package com.tecso.exam.service.exceptions;
+package com.tecso.exam.service.exceptions.notfound;
 
 public class NotFoundException extends IllegalArgumentException {
     public NotFoundException(String entityName) {

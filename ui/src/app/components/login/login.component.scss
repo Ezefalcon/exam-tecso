@@ -1,0 +1,28 @@
+.mat-card {
+  border-radius: 25px;
+  max-width: 400px;
+}
+
+.icon-login {
+  max-height: 35%;
+  max-width: 35%;
+}
+
+.login-content {
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.background-color {
+  background: linear-gradient(180deg, rgba(189, 200, 203, 0.8) 0%, rgba(114, 172, 205, 0.8) 52.08%, rgba(131, 52, 168, 0.8) 100%);
+}
+
+.submit {
+  border-radius: 20px;
+}
+
+.sing-up {
+  cursor: pointer;
+  color: black;
+}

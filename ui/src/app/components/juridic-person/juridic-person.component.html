@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>{{data ? 'Editar titular' : 'Añadir titular'}}</h1>
+<div mat-dialog-content [formGroup]="form">
+  <mat-form-field class="col-12 mt-2">
+    <mat-label>RUT</mat-label>
+    <input matInput formControlName="rut">
+  </mat-form-field>
+  <mat-form-field class="col-12 mt-2">
+    <mat-label>Razon social</mat-label>
+    <input matInput formControlName="name">
+  </mat-form-field>
+  <mat-form-field class="col-12 mt-2">
+    <mat-label>Año de fundación</mat-label>
+    <input type="number" matInput formControlName="foundationYear">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="close()">Cancelar</button>
+  <button mat-button (click)="data ? update() : add()">{{data ? 'Actualizar' : 'Añadir'}}</button>
+</div>

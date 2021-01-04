@@ -5,5 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface JuridicPersonRepository extends JpaRepository<JuridicPerson, String> {
+public interface JuridicPersonRepository extends JpaRepository<JuridicPerson, Long> {
+    boolean existsByRut(String s);
 }

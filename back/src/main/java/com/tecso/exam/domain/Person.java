@@ -10,7 +10,9 @@ import javax.persistence.*;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Entity
 public abstract class Person {
-    @Id
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    protected Long id;
+    @Column(unique = true)
     protected String rut;
     protected String name;
 }
