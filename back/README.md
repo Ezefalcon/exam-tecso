@@ -7,7 +7,7 @@ Aunque estariamos guardando los datos en nulo, a menos que utilicemos una base d
 
 Se pueden ver los endpoints ingresando a http://localhost:8080/api/swagger-ui.html
 
-###Pasos para iniciar el servicio:
+###Pasos para iniciar el servicio: ###
 
 Levantar el container de docker(imagen de postgres) o utilizar base de datos propia con respectiva config:
 
@@ -23,3 +23,7 @@ Instalar dependencias del proyecto
 Levantar aplicación utilizando la configuración automática de Intellij o corriendo este comando: 
 
     mvn spring-boot:run
+
+Deploy a heroku
+
+    mvn clean heroku:deploy

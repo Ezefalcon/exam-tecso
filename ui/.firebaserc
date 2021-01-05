@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "tecso-exam-ef"
+  },
+  "targets": {
+    "tecso-exam-ef": {
+      "hosting": {
+        "ui": [
+          "tecso-exam-ef"
+        ]
+      }
+    }
+  }
+}

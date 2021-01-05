@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: false,
+  environmentName: 'local',
+  apiUrl: 'https://tecso-exam-ef.herokuapp.com/api'
 };

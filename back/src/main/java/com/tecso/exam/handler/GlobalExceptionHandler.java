@@ -16,6 +16,11 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorDTO> test(Exception exc) {
+        return generateResponse(exc, HttpStatus.CONFLICT);
+    }
+
     @ExceptionHandler(AlreadyExistsException.class)
     public ResponseEntity<ErrorDTO> alreadyExistsHandler(AlreadyExistsException exc) {
         return generateResponse(exc, HttpStatus.CONFLICT);

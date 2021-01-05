@@ -49,8 +49,10 @@ public class JuridicPersonIntegrationTest extends SimpleIntegrationTestConfigura
 
     @Test
     public void update_shouldUpdateRecord() {
-        JuridicPerson juridicPerson = new JuridicPerson("123", "Tecso updated", 2021);
-        juridicPerson.setId(1l);
+        JuridicPerson juridicPerson = new JuridicPerson("333333", "Tecso", 2021);
+        JuridicPerson save = juridicPersonService.save(juridicPerson);
+        juridicPerson.setId(save.getId());
+        juridicPerson.setName("Tecso updated");
 
         JuridicPerson update = juridicPersonService.update(juridicPerson);
 
@@ -60,7 +62,10 @@ public class JuridicPersonIntegrationTest extends SimpleIntegrationTestConfigura
 
     @Test
     public void findById_shouldReturnAJuridicPerson() {
-        JuridicPerson byId = juridicPersonService.findById(1l);
+        JuridicPerson juridicPerson = new JuridicPerson("132132", "Tecso", 2021);
+
+        JuridicPerson saved = juridicPersonService.save(juridicPerson);
+        JuridicPerson byId = juridicPersonService.findById(saved.getId());
         assertNotNull(byId);
     }
 

@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 
 @Component
@@ -38,7 +39,7 @@ public class DatabaseInitializer implements CommandLineRunner {
             this.physicalPersonService.save(physicalPerson);
         }
 
-        Account account = new Account(123L, Currency.USD, BigDecimal.valueOf(1500));
+        Account account = new Account(123L, Currency.USD, BigDecimal.valueOf(1500).setScale(2, RoundingMode.HALF_UP));
         Account savedAccount = accountService.save(account);
 
         Movement movement = new Movement(LocalDateTime.of(2020, 05, 02, 0,0), MovementType.DEBIT, "", BigDecimal.TEN, savedAccount);

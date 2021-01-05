@@ -21,13 +21,11 @@ public class Movement {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
-    @JsonFormat(timezone = "UTC", pattern = "dd-MM-yyyy'T'HH:mm:ss.SSSZ")
     private LocalDateTime date;
     private MovementType movementType;
     private String description;
     private BigDecimal amount;
 
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "account_id")
     private Account account;

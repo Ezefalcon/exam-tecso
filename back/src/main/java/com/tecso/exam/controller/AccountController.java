@@ -30,7 +30,9 @@ public class AccountController {
 
     @GetMapping
     public List<AccountDTO> findAll() {
-        return accountMapper.convertToDTO(accountService.findAll());
+        List<Account> all = accountService.findAll();
+        List<AccountDTO> accountDTOS = accountMapper.convertToDTO(all);
+        return accountDTOS;
     }
 
     @PostMapping

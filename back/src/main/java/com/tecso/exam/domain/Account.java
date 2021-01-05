@@ -25,7 +25,7 @@ public class Account {
     @Getter @Setter
     private Currency currency;
 
-    @Digits(integer = 2, fraction = 2) @Getter @Setter
+    @Getter @Setter
     private BigDecimal balance;
 
     public Account(Long accountNumber, Currency currency, @Digits(integer = 2, fraction = 2) BigDecimal balance) {
