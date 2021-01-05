@@ -3,7 +3,9 @@ Se utilizó postgreSQL como DBMS, y H2 para tests de integración
 Se hicieron dos entidades diferentes para los titulares, personas juridicas y personas fisicas. 
 Esta hecho de esta manera asumiendo que ambas pueden llegar a tener comportamiento diferente.
 Si no tienen comportamiento diferente, seria mejor utilizar una sola entidad y tener todos los campos ahi.
-Aunque estariamos guardando los datos en nulo a menos que utilicemos una base de datos NoSql.
+Aunque estariamos guardando los datos en nulo, a menos que utilicemos una base de datos NoSql.
+
+Se pueden ver los endpoints ingresando a http://localhost:8080/api/swagger-ui.html
 
 ###Pasos para iniciar el servicio:
 

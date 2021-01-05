@@ -1,6 +1,7 @@
 package com.tecso.exam.domain;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -9,7 +10,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Entity
+@NoArgsConstructor
 public class Account {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Getter @Setter
     private Long id;
@@ -17,7 +19,7 @@ public class Account {
     @Column(unique = true) @Getter @Setter
     private Long accountNumber;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "account")
     private List<Movement> movements;
 
     @Getter @Setter
@@ -31,6 +33,10 @@ public class Account {
         this.currency = currency;
         this.balance = balance;
         this.movements = new ArrayList<>();
+    }
+
+    public boolean isMovementsEmpty() {
+        return this.movements.isEmpty();
     }
 
     public void addMovement(Movement movement) {

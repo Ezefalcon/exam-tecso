@@ -1,16 +1,42 @@
 package com.tecso.exam.domain;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@Entity
+@NoArgsConstructor
 public class Movement {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
-    private LocalDate date;
+
+    @JsonFormat(timezone = "UTC", pattern = "dd-MM-yyyy'T'HH:mm:ss.SSSZ")
+    private LocalDateTime date;
     private MovementType movementType;
     private String description;
     private BigDecimal amount;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "account_id")
+    private Account account;
+
+    public Movement(LocalDateTime date, MovementType movementType, String description, BigDecimal amount, Account account) {
+        this.date = date;
+        this.movementType = movementType;
+        this.description = description;
+        this.amount = amount;
+        this.account = account;
+    }
 }

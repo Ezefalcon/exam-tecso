@@ -1,6 +1,7 @@
 package com.tecso.exam.domain;
 
-import lombok.Data;
+
+import lombok.Getter;
 
 import java.math.BigDecimal;
 
@@ -9,6 +10,7 @@ public enum Currency {
     ARS(BigDecimal.valueOf(1000)),
     EUR(BigDecimal.valueOf(150));
 
+    @Getter
     private BigDecimal maxValue;
 
     Currency(BigDecimal maxValue) {

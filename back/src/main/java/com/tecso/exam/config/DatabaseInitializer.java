@@ -1,15 +1,14 @@
 package com.tecso.exam.config;
 
-import com.tecso.exam.domain.JuridicPerson;
-import com.tecso.exam.domain.PhysicalPerson;
-import com.tecso.exam.domain.User;
-import com.tecso.exam.service.JuridicPersonService;
-import com.tecso.exam.service.PhysicalPersonService;
-import com.tecso.exam.service.UserService;
+import com.tecso.exam.domain.*;
+import com.tecso.exam.service.*;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Component
 @AllArgsConstructor
@@ -19,6 +18,8 @@ public class DatabaseInitializer implements CommandLineRunner {
     private UserService userService;
     private JuridicPersonService juridicPersonService;
     private PhysicalPersonService physicalPersonService;
+    private AccountService accountService;
+    private MovementService movementService;
 
     @Override
     public void run(String... args) throws Exception {
@@ -37,7 +38,14 @@ public class DatabaseInitializer implements CommandLineRunner {
             this.physicalPersonService.save(physicalPerson);
         }
 
+        Account account = new Account(123L, Currency.USD, BigDecimal.valueOf(1500));
+        Account savedAccount = accountService.save(account);
 
+        Movement movement = new Movement(LocalDateTime.of(2020, 05, 02, 0,0), MovementType.DEBIT, "", BigDecimal.TEN, savedAccount);
+        Movement movement2 = new Movement(LocalDateTime.of(2020, 06, 02, 0,0), MovementType.DEBIT, "", BigDecimal.TEN, savedAccount);
+
+        movementService.save(movement);
+        movementService.save(movement2);
 
     }
 }
